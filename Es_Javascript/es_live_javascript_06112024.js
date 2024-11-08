@@ -32,10 +32,12 @@ let canioAge=18
 // IF - ELSE IF - ELSE
 let albertoAge=4
 
-if (albertoAge <18 && albertoAge >10){
+if (albertoAge <18 && albertoAge >10  ) { 
     console.log("sei adolescente")
 } else if (albertoAge <5) {
     console.log("sei un bambino")
 }else {
     console.log("sei maggiorenne")
 }
+
+
