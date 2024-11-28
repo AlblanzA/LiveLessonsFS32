@@ -49,4 +49,41 @@ if (cars[2].isHybrid==true) {
     console.log("La vettura non è ibrida")
 }
 
-function checkIsHybrid
+console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+
+
+function checkIsHybrid(batman) {
+  if (batman == true) {
+  return "la vettura è ibrida"
+  } else {
+    return "la vettura non è ibrida "
+  }
+}
+
+let check = checkIsHybrid(cars[1].isHybrid)
+console.log(check)
+
+cars.forEach((car) => 
+{
+  let check2 = checkIsHybrid(car.isHybrid)
+  console.log(check2)
+  let check3 = checkBrand(car.brand)
+  console.log(check3)
+})
+
+function checkBrand(superman) {
+  switch (superman) {
+    case "Ferrari":
+      return ("L'auto è una ferrari");
+      break;
+  
+    case "Lamborghini":
+      return ("L'auto è una lamborghini");
+      break;
+  
+      default:
+      return ("Modello non conosciuto");
+  }
+
+}
