@@ -8,7 +8,6 @@ function checkPasseggers(maxPasseggers, numberPassaggers) {
   }
 }
 
-
 //FINE SEZIONE FUNZIONI
 
 const aerplanes = [
@@ -31,9 +30,7 @@ switch (aerplanes[0].model) {
 
 aerplanes.forEach((aerplane) => {
   console.log("Controllo aereo: " + aerplane.model);
-const verifyPasseggers= checkPasseggers(aerplane.passeggers, 5500);
-console.log(verifyPasseggers) 
-console.log("Fine controllo aereo")
+  const verifyPasseggers = checkPasseggers(aerplane.passeggers, 5500);
+  console.log(verifyPasseggers);
+  console.log("Fine controllo aereo");
 });
-
-
