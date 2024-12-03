@@ -44,7 +44,6 @@ let somma = 0;
 warehouse.forEach((element) => {
   somma = sum(element.quantity, somma);
 });
-console.log(somma);
 
 printElements(warehouse);
 console.log(checkAvailability(warehouse, 200));
