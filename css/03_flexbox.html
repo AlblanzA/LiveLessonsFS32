@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLEXBOX</title>
+    <style>
+        section {
+            border: solid 1px black;
+            display: flex;
+            margin-bottom: 1rem;
+            position: relative;
+            flex-wrap: wrap; /**Non distorce le dimensioni dei figli andando a capo se non c'è più spazio***/
+            /*flex-direction: row-reverse; !**inverte l'ordine degli elementi figlio***!*/
+            /*flex-direction: column; !**Gli elementi invece di essere disposti in una fila orizzontale vengono messi in una colonna***!*/
+            justify-content: center; /**Centra i contenuti figlio***/
+            /*justify-content: flex-end; !**Allinea gli elementi alla fine del contenitore padre***!*/
+            flex-direction: row;
+            align-items: center; /***allineamento items nell'asse verticale***/
+        }
+
+        section.no-flex {
+            display: block;
+        }
+
+        /*****Stile quadrati******/
+        .square {
+            width: 20ch;
+            height: 20ch;
+            /*margin: 1rem auto;*/
+            margin: 1rem;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .square1 {
+            background-color: blue;
+            position: static; /*****posizione di default, nessun cambiamento****/
+            top: 10ch;
+            left: 10ch;
+        }
+
+        .square2 {
+            background-color: red;
+        }
+
+        .square3 {
+            background-color: yellow;
+        }
+
+        .square4 {
+            background-color: green;
+        }
+
+        /*********Regole position************/
+
+    </style>
+</head>
+<body>
+<section>
+    <div class="square square1 right">1</div>
+    <div class="square square2">2</div>
+<!--    <div class="square square3">3</div>-->
+<!--    <div class="square square4">4</div>-->
+</section>
+<!--<section class="no-flex">-->
+<!--    <div class="square square1 right">1</div>-->
+<!--    <div class="square square2">2</div>-->
+<!--    <div class="square square3">3</div>-->
+<!--    <div class="square square4">4</div>-->
+<!--</section>-->
+
+</body>
+</html>
