@@ -5,6 +5,7 @@
  - visualizzare libri
  - simulare una login
  */
+
 function addBook(newBook, arr) {
     arr.push(newBook)
 }
