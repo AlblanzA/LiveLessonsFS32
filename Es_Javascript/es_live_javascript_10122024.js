@@ -53,7 +53,7 @@ function printMovies(arr) {
   }
 }
 
-function main() {
+async function main() {
   let movies = [];
 
   let movie1 = { id: 1, title: "The Godfather", year: 1978 };
@@ -61,49 +61,70 @@ function main() {
   let movie3 = { id: 3, title: "Titanic", year: 1999 };
   let movie4 = { id: 4, title: "Scarface", year: 1983 };
 
-  addMovies(movie1, movies)
-    .then((data) => {
-      console.log(data);
-      printMovies(movies);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  try {
+    console.log("Avvio il programma...");
 
-  addMovies(movie2, movies)
-    .then((data) => {
-      console.log(data);
-      printMovies(movies);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  addMovies(movie3, movies)
-    .then((data) => {
-      console.log(data);
-      printMovies(movies);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  addMovies(movie4, movies)
-    .then((data) => {
-      console.log(data);
-      printMovies(movies);
-      deleteMovies(movie1, movies)
-        .then((data22) => {
-          console.log(data22);
-          printMovies(movies);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    const res = await addMovies(movie1, movies);
+    console.log(res);
+    const res2 = await addMovies(movie2, movies);
+    console.log(res2);
+    const res3 = await addMovies(movie3, movies);
+    console.log(res3);
+    const res4 = await addMovies(movie4, movies);
+    console.log(res4);
+    printMovies(movies);
+    const del5 = await deleteMovies(movie3, movies);
+    console.log(del5);
+    printMovies(movies);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    console.log("termine programma");
+  }
 }
+
+//   addMovies(movie1, movies)
+//     .then((data) => {
+//       console.log(data);
+//       printMovies(movies);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+
+//   addMovies(movie2, movies)
+//     .then((data) => {
+//       console.log(data);
+//       printMovies(movies);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+
+//   addMovies(movie3, movies)
+//     .then((data) => {
+//       console.log(data);
+//       printMovies(movies);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+
+//   addMovies(movie4, movies)
+//     .then((data) => {
+//       console.log(data);
+//       printMovies(movies);
+//       deleteMovies(movie1, movies)
+//         .then((data22) => {
+//           console.log(data22);
+//           printMovies(movies);
+//         })
+//         .catch((error) => {
+//           console.log(error);
+//         });
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
 
 main();
