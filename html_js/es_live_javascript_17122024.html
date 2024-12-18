@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ARCHIVIO LIBRI</h1>
+    <h3>Aggiungi un libro</h3>
+    <form>
+      <label for="bookTitle"> Titolo :</label>
+      <input type="text" name="bookTitle" class="form-field" id="bookTitle" />
+      <br />
+      <label for="bookAuthor">Autore :</label>
+      <input
+        type="text"
+        name="bookAuthor"
+        class="form-field"
+        id="bookAuthor"
+      /><br />
+      <label for="bookYear">Anno di produzione: </label>
+      <input
+        type="number"
+        name="bookYear"
+        class="form-field"
+        id="bookYear"
+      /><br />
+      <button type="submit" class="btn">SALVA</button>
+    </form>
+    <div>
+      <h3>Lista Libri:</h3>
+      <ul class="listBooks"></ul>
+    </div>
+
+    <!-- Codice Javascript  -->
+    <script>
+      const titleInput = document.querySelector("#bookTitle");
+      const authorInput = document.querySelector("#bookAuthor");
+      const yearInput = document.querySelector("#bookYear");
+
+      const btn = document.querySelector(".btn");
+
+      btn.addEventListener("click", function (event) {
+        alert("Text");
+        const book = {
+          title: titleInput.value,
+          author: authorInput.value,
+          year: yearInput.value,
+        };
+
+        console.log(book);
+      });
+    </script>
+  </body>
+</html>
