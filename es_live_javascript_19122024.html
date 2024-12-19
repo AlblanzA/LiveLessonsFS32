@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form> 
+        <h1> Archivio libri </h1>
+        <label>Inserisci Titolo </label>
+        <input type="text" name="bookTitle" id="bookTitle" class="formField"/>
+        <button> Salva </button>
+    </form>
+    <div> 
+        <h1>Lista libri </h1>
+        <ul id=" bookList" class="list">
+
+        </ul>
+    </div>
+    <script>
+const book = document.querySelector("#bookTitle")
+const button = document.querySelector("button")
+const books = []
+
+function addElement(newElement, arr){
+ return arr.push(newElement)
+}
+
+button.addEventListener("click", function(){
+    alert(book.value)
+// addElement(book.value, books)
+books.push(book.value)
+alert(books)
+})
+
+const lista = document.querySelector("#bookList")
+document.createElement()
+
+    </script>
+</body>
+</html>
