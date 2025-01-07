@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivio Libri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form> 
+        <h1> Archivio libri </h1>
+        <label for="bookTitle">Inserisci Titolo:</label>
+        <input type="text" name="bookTitle" id="bookTitle" class="formField"/>
+        <button type="button" id="saveButton">Salva</button>
+    </form>
+    <div> 
+        <h1>Lista libri</h1>
+        <div id="messageSection"> </div>
+        <ul id="bookList" class="list">
+        </ul>
+    </div>
+
+    <script>
+        const book = document.querySelector("#bookTitle");
+        const button = document.querySelector("#saveButton");
+        const messageSection = document.querySelector("#messageSection");
+        const books = [];
+
+        function addElement(newElement, arr) {
+            arr.push(newElement); 
+        }
+
+        if(books.length === 0){
+            messageSection.innerHTML = "<p> Nessun libro presente </p>"
+        }
+
+        button.addEventListener("click", function(event) {
+
+            event.preventDefault();
+
+            const bookTitle = book.value.trim();
+            
+            if (bookTitle !== "") {
+
+                addElement(bookTitle, books);
+                messageSection.innerHTML = ""
+
+                const listItem = document.createElement("li");
+                listItem.textContent = bookTitle;
+
+                document.querySelector("#bookList").appendChild(listItem);
+
+                book.value = "";
+            } else {
+                alert("Inserisci un titolo valido!");
+            }
+        });
+    </script>
+</body>
+</html>
