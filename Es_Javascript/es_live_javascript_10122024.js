@@ -57,7 +57,7 @@ async function main() {
   let movies = [];
 
   let movie1 = { id: 1, title: "The Godfather", year: 1978 };
-  let movie2 = { id: 2, year: 1978 };
+  let movie2 = { id: 2, title: "Il Gladiatore", year: 2000 };
   let movie3 = { id: 3, title: "Titanic", year: 1999 };
   let movie4 = { id: 4, title: "Scarface", year: 1983 };
 
