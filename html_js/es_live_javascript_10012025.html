@@ -41,6 +41,10 @@
         localStorage.setItem("Carrello", objectsToJson);
       }
 
+      function RemoveProductToCart(obj) {
+        localStorage.removeItem("Carrello");
+      }
+
       //funzione fetch principale
       async function fetchData() {
         try {
