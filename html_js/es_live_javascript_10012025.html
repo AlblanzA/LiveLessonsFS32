@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .producTitle {
+        font-weight: 200;
+        font-style: italic;
+      }
+
+      .cart {
+        border: 1px solid black;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="cart">
+        <h3>Il tuo Carrello</h3>
+        <span id="messageCart"></span>
+        <ul id="cartList"></ul>
+      </div>
+      <h1>Lista Prodotti</h1>
+      <div id="messageSection"></div>
+      <ul id="bookList" class="list"></ul>
+    </div>
+    <script>
+      //prendo gli elementi del DOM
+      const ul = document.getElementById("bookList");
+      const divSection = document.getElementById("messageSection");
+      const ulCart = document.getElementById("cartList");
+
+      divSection.textContent = "NESSUN PRODOTTO DISPONIBILE";
+
+      //funzione per inserire prodotti in LocalStorage
+      function AddProductToCart(obj) {
+        let objectsToJson = JSON.stringify(obj);
+        localStorage.setItem("Carrello", objectsToJson);
+      }
+
+      //funzione fetch principale
+      async function fetchData() {
+        try {
+          const baseUrl = "https://fakestoreapi.com";
+
+          divSection.textContent = "Caricamento...";
+
+          const response = await fetch(baseUrl + "/products");
+          console.log(response.status);
+          //controllo lo stato della chiamata
+          if (response.status != 200) {
+            divSection.textContent = "Error fetch code: " + response.status;
+          } else {
+            //la chiamata è andata buon fine
+            //salvo i dati ricevuti dal fetch in una variabile
+            const data = await response.json();
+            console.log(data);
+            // alert("Sono stati recuperati " + data.length + " elementi");
+            //ciclo gli elemnti per poi decidere cosa farci
+            data.forEach((element) => {
+              // console.log(element.title);
+              //creo "li" per ogni prodotto
+              const li = document.createElement("li");
+              li.innerHTML =
+                "<h3> Titolo del prodotto: <span class='producTitle'> " +
+                element.title +
+                "<span></h3> <img width='100' src='" +
+                element.image +
+                "'> <br><button class='buttonProducts' id='btn-" +
+                element.id +
+                "'> SCOPRI </button> ";
+
+              //appendo "li" al padre "ul"
+              ul.appendChild(li);
+              const btnProducts = document.querySelector("#btn-" + element.id);
+
+              btnProducts.addEventListener("click", function () {
+                alert("articolo inserito nel carrello: " + element.title);
+
+                let objects = {
+                  name: element.title,
+                  id: element.id,
+                  description: element.description,
+                };
+                AddProductToCart(objects);
+
+                //aggiorno il carrello HTML
+                const liCart = document.createElement("li");
+                ulCart.appendChild(liCart);
+                liCart.innerHTML =
+                  "<h5> Titolo del prodotto: <span class='producTitle'> " +
+                  element.title +
+                  "<span></h5> <img width='50' src='" +
+                  element.image +
+                  "'> <br><button class='buttonProducts' id='btn-" +
+                  element.id +
+                  "'> ELIMINA </button> ";
+
+                // let objectsToJson = JSON.stringify(objects);
+                // localStorage.setItem("Carrello", objectsToJson);
+              });
+            });
+            // console.log(data[0].title);
+
+            divSection.textContent = ""; //rimuovo il messaggio di caricamento
+          }
+        } catch (error) {
+          console.log(error);
+          divSection.textContent = error;
+        }
+      }
+
+      setTimeout(() => {
+        fetchData();
+      }, 3000);
+    </script>
+  </body>
+</html>
