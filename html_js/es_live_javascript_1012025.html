@@ -41,10 +41,10 @@
             //salvo i dati ricevuti dal fetch in una variabile
             const data = await response.json();
             console.log(data);
-            alert("Sono stati recuperati " + data.length + " elementi");
+            // alert("Sono stati recuperati " + data.length + " elementi");
             //ciclo gli elemnti per poi decidere cosa farci
             data.forEach((element) => {
-              console.log(element.title);
+              // console.log(element.title);
               //creo "li" per ogni prodotto
               const li = document.createElement("li");
               li.innerHTML =
@@ -53,19 +53,28 @@
                 element.title +
                 "<span></h3> <img width='100' src='" +
                 element.image +
-                "'> <button class='buttonProducts'> SCOPRI </button> ";
+                "'> <button class='buttonProducts' id='btn-" + element.id + "'> SCOPRI </button> ";
 
               //appendo "li" al padre "ul"
               ul.appendChild(li);
+             const btnProducts = document.querySelector("#btn-" + element.id)
+
+            btnProducts.addEventListener("click", function(){
+    // alert(element.title)
+    let objects = {
+      name: element.title,
+      id: element.id,
+      description: element.description,
+    }
+
+    let objectsToJson = JSON.stringify(objects)
+    localStorage.setItem("Carrello", objectsToJson)
+  })
             });
-            console.log(data[0].title);
+            // console.log(data[0].title);
 
             divSection.textContent = "" //rimuovo il messaggio di caricamento
 
-            const buttonProducts = document.getElementsByClassName("buttonProducts");
-            buttonProducts.addEventListener("click", function(){
-    alert("OK")
-  })
           } 
         } catch (error) {
           console.log(error);
@@ -73,7 +82,9 @@
         }
       }
 
-  setTimeout(fetchData(), 3000)
+  setTimeout (() => {
+    fetchData()
+  }, 3000)
   
 
 
