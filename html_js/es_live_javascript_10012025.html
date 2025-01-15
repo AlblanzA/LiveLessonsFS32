@@ -37,12 +37,38 @@
 
       //funzione per inserire prodotti in LocalStorage
       function AddProductToCart(obj) {
+        //TODO: consentire l'inserimento di più articoli nel carrello
         let objectsToJson = JSON.stringify(obj);
         localStorage.setItem("Carrello", objectsToJson);
       }
 
-      function RemoveProductToCart(obj) {
+      function RefreshCart() {
+        //svuoto forzatamente il carrello
+        ulCart.innerHTML = "";
+        //prendo i prodotti del Carrello dal LocalStorage
+        const cartRefresh = localStorage.getItem("Carrello");
+        const cartParse = JSON.parse(cartRefresh);
+        //aggiorno il carrello HTML
+        const liCart = document.createElement("li");
+        ulCart.appendChild(liCart);
+        liCart.innerHTML =
+          "<h5> Titolo del prodotto: <span class='producTitle'> " +
+          cartParse.name +
+          "<span></h5> <img width='50' src='" +
+          cartParse.image +
+          "'> <br>";
+        const btnClear = document.createElement("button");
+        ulCart.appendChild(btnClear);
+        btnClear.addEventListener("click", function () {
+          RemoveProductToCart();
+        });
+      }
+
+      function RemoveProductToCart() {
+        //svuoto il localStorage
         localStorage.removeItem("Carrello");
+        //svuoto il tag UL del Carrello
+        ulCart.innerHTML = "";
       }
 
       //funzione fetch principale
@@ -75,7 +101,7 @@
                 element.image +
                 "'> <br><button class='buttonProducts' id='btn-" +
                 element.id +
-                "'> SCOPRI </button> ";
+                "'> AGGIUNGI AL CARRELLO </button> ";
 
               //appendo "li" al padre "ul"
               ul.appendChild(li);
@@ -84,27 +110,17 @@
               btnProducts.addEventListener("click", function () {
                 alert("articolo inserito nel carrello: " + element.title);
 
+                //creo l'oggetto che salverò nel localStorage
                 let objects = {
                   name: element.title,
                   id: element.id,
+                  image: element.image,
                   description: element.description,
                 };
+                //richiamo la funzione per aggiungere un prodotto al carrello
                 AddProductToCart(objects);
-
-                //aggiorno il carrello HTML
-                const liCart = document.createElement("li");
-                ulCart.appendChild(liCart);
-                liCart.innerHTML =
-                  "<h5> Titolo del prodotto: <span class='producTitle'> " +
-                  element.title +
-                  "<span></h5> <img width='50' src='" +
-                  element.image +
-                  "'> <br><button class='buttonProducts' id='btn-" +
-                  element.id +
-                  "'> ELIMINA </button> ";
-
-                // let objectsToJson = JSON.stringify(objects);
-                // localStorage.setItem("Carrello", objectsToJson);
+                //richiamo la funzione per aggiornare il carrello
+                RefreshCart();
               });
             });
             // console.log(data[0].title);
@@ -116,6 +132,9 @@
           divSection.textContent = error;
         }
       }
+
+      //richiamo la funzione per aggiornare il carrello ogni volta che la pagina viene ricaricata
+      RefreshCart();
 
       setTimeout(() => {
         fetchData();
