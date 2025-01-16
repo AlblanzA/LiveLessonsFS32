@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon app</title>
+</head>
+<body>
+
+<div>
+<span id="messageSection"> </span>
+</div>
+
+    <div>
+        <h1> POKEMON </h1>
+        <h3> questa è una pagina dedicata ai pokemon </h3>
+        <div id="Pokemon"></div>
+    
+    </div>
+    <script>
+        async function fetchData(){
+            try{
+            const baseUrl = "https://fakestoreapi.com"
+            const response = await fetch(baseUrl + "/products")
+
+            if(response.status !== 200){
+             const element = document.createElement("p")
+             element.innerHTML = "Questo è un messaggio di errore"
+             const messageSection = document.getElementById("messageSection")
+             messageSection.appendChild(element)
+            } else{
+             const data = await response.json()
+             console.log(data)
+             const pokemon = document.getElementById("Pokemon")
+
+             data.forEach(element => {
+                const p = document.createElement("p")
+                p.innerHTML = "questo è un titolo" + element.title
+                pokemon.appendChild(p)
+             });
+            }
+            } catch(error){
+                console.log(error)
+            }
+        }
+
+
+        fetchData()
+
+    </script>
+</body>
+</html>
