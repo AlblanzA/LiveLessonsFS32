@@ -86,7 +86,7 @@ function verificaNazionalità(brand){
 //Creare una funzione per eliminare una vettura dell'array
 
 function removeCar(element){
-let newArray = cars.splice([1], 1); // 2nd parameter means remove one item only
+let newArray = cars.splice([1], 1); // 2nd parameter: il primo parametro da dove deve partire e il secondo quanti ne deve eliminare
 console.log(newArray)
 }
 
