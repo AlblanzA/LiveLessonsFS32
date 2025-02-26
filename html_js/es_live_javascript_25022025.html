@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Esercizi</title>
+        <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        width: 80%;
+        margin: 20px auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .article {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 500px;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      .img {
+        width: 300px;
+        height: 200px;
+        border-radius: 8px;
+      }
+
+      .titolo {
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+      .paragrafo {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      .categoria {
+        font-size: 1rem;
+        color: #777;
+        margin: 10px 0;
+      }
+
+      .pubblicazione {
+        font-size: 0.9rem;
+        color: #888;
+      }
+            </style>
+    </head>
+    <body>
+        <div class="container" id="container"></div>
+        <script>
+        const articoli = [
+  {
+    titolo: "Guida introduttiva a Vue.js 3",
+    descrizione: "Impara le basi del framework JavaScript più innovativo.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Sviluppo Web",
+    dataPubblicazione: "2023-03-10",
+  },
+  {
+    titolo: "La rivoluzione dell'intelligenza artificiale",
+    descrizione: "Esplora le ultime frontiere dell'IA e il suo impatto sul futuro.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Tecnologia",
+    dataPubblicazione: "2022-11-25",
+  },
+  {
+    titolo: "Ricette vegane per una vita sana",
+    descrizione: "Scopri piatti deliziosi e salutari a base vegetale.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Cucina",
+    dataPubblicazione: "2021-09-01",
+  },
+  {
+    titolo: "Fotografia di paesaggio: cattura la bellezza della natura",
+    descrizione: "Consigli e tecniche per immortalare panorami mozzafiato.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Fotografia",
+    dataPubblicazione: "2020-06-18",
+  },
+  {
+    titolo: "I segreti del copywriting efficace",
+    descrizione: "Impara a scrivere testi persuasivi che convertono.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Marketing",
+    dataPubblicazione: "2019-04-05",
+  },
+  {
+    titolo: "Viaggio nello spazio: alla scoperta dei pianeti extrasolari",
+    descrizione: "Un'avventura tra stelle e galassie alla ricerca di nuovi mondi.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Astronomia",
+    dataPubblicazione: "2023-07-22",
+  },
+  {
+    titolo: "Lezioni di chitarra per principianti",
+    descrizione: "Impara a suonare i tuoi brani preferiti con semplici esercizi.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Musica",
+    dataPubblicazione: "2022-02-14",
+  },
+  {
+    titolo: "L'arte della meditazione: trova la tua pace interiore",
+    descrizione: "Tecniche e consigli per ridurre lo stress e migliorare il benessere mentale.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Benessere",
+    dataPubblicazione: "2021-12-03",
+  },
+  {
+    titolo: "Storia dell'arte: dai primitivi ai moderni",
+    descrizione: "Un percorso attraverso le epoche e gli stili artistici più significativi.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Arte",
+    dataPubblicazione: "2020-10-29",
+  },
+  {
+    titolo: "L'importanza del SEO per il tuo sito web",
+    descrizione: "Strategie e strumenti per migliorare il posizionamento sui motori di ricerca.",
+    immagineUrl: "https://placehold.co/300x200",
+    categoria: "Web Marketing",
+    dataPubblicazione: "2019-08-16",
+  },
+];
+
+const contenitore = document.getElementById("container")
+console.log(contenitore)
+//creo l'elemento html per ogni articolo 
+articoli.forEach((items) => {
+//creo la card article dove inserisco tutti gli elementi dell'articolo(titolo, img...)
+
+const article = document.createElement("article")
+article.setAttribute("class", "article")
+contenitore.appendChild(article)
+
+  const titolo = document.createElement("h1")
+  titolo.setAttribute("class", "titolo")
+  titolo.innerHTML = items.titolo
+
+  const immagine = document.createElement("img")
+  immagine.setAttribute("class", "img")
+  immagine.src = items.immagineUrl
+  article.appendChild(immagine)
+  article.appendChild(titolo)
+
+  const descrizione = document.createElement("p")
+  descrizione.innerHTML = items.descrizione
+  descrizione.setAttribute("class", "paragrafo")
+  article.appendChild(descrizione)
+
+  const categoria = document.createElement("h2")
+  categoria.setAttribute("class", "categoria")
+  categoria.innerHTML = items.categoria
+  article.appendChild(categoria)
+
+  const dataPubblicazione = document.createElement("h3")
+  dataPubblicazione.setAttribute("class", "pubblicazione")
+  dataPubblicazione.innerHTML = items.dataPubblicazione
+  article.appendChild(dataPubblicazione)
+
+})
+//appendo gli elementi creati al padre contenitore 
+    </script>
+    </body>
+</html>
