@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+                 body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        width: 80%;
+        margin: 20px auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      form {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 500px;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="container">     
+   <form>
+    
+    <h1> Archivio libri </h1>
+    <p> Aggiungi il libro che preferisci e salvalo nel tuo archivio! </p>
+    <label> Titolo: </label> <br>
+    <input type="text" name="titolo" id="titoloLibro"> <br> 
+
+    <label> Autore: </label> <br>
+    <input type="text" name="autore" id="autoreLibro"> <br>
+
+    <label> Il libro è stato letto? </label> <br>
+    <input type="radio" name="radioInput" value="true"> Si <br>
+    <input type="radio" name="radioInput" value="false"> No <br>
+
+    <button type="submit" id="bottoneInput"> Salva </button>
+   </form> 
+    </div>
+
+    <script>
+     const titoloLibro = document.getElementById("titoloLibro")
+     const autoreLibro = document.getElementById("autoreLibro")
+     const bottoneInput = document.getElementById("bottoneInput")
+
+     //To do: Recuperare i campi radio
+     bottoneInput.addEventListener("click", (event)=> {
+        event.preventDefault()
+        // console.log(titoloLibro.value) //prendiamo il valore che ha inserito l'utente
+        
+
+        const formData = {
+            title: titoloLibro.value,
+            autor: autoreLibro.value
+        }
+
+        console.log(formData)
+     })
+    
+     
+    </script>
+</body>
+</html>
