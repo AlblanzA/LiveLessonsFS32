@@ -1,78 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
     <style>
-                 body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-      }
-
-      .container {
-        width: 80%;
-        margin: 20px auto;
+   
+      body {
         display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-      }
+            justify-content: center;  
+            align-items: center;      
+            height: 100vh;            
+            margin: 0;               
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
 
-      form {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        width: 500px;
-        align-items: center;
-        padding: 20px;
-        box-sizing: border-box;
-        text-align: center;
-      }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;  
+            width: 100%;
+            max-width: 400px; 
+        }
+
+        h1 {
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 20px;
+        
+        }
+        input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #9d2f76;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff00a2;
+        }
+
+        .container-btn{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+        }
+
+        .input-radio, .input-checkbox{
+          width: 20px;
+        }
+
+      
 
     </style>
-</head>
-<body>
-    <div class="container">     
-   <form>
-    
-    <h1> Archivio libri </h1>
-    <p> Aggiungi il libro che preferisci e salvalo nel tuo archivio! </p>
-    <label> Titolo: </label> <br>
-    <input type="text" name="titolo" id="titoloLibro"> <br> 
+  </head>
+  <body>
+    <div class="container">
+      <form>
 
-    <label> Autore: </label> <br>
-    <input type="text" name="autore" id="autoreLibro"> <br>
+        <h1> Archivio libri </h1>
+        <p> Aggiungi il libro che preferisci e salvalo nel tuo archivio! </p>
+        <label> Titolo: </label> <br>
+        <input type="text" name="titolo" id="titoloLibro"> <br>
 
-    <label> Il libro è stato letto? </label> <br>
-    <input type="radio" name="radioInput" value="true"> Si <br>
-    <input type="radio" name="radioInput" value="false"> No <br>
+        <label> Autore: </label> <br>
+        <input type="text" name="autore" id="autoreLibro"> <br>
 
-    <button type="submit" id="bottoneInput"> Salva </button>
-   </form> 
+        <label> Il libro è stato letto? </label> <br>
+        <input type="radio" name="radioInput" value="true" class="input-radio"
+          id="input-true"> Si <br>
+        <input type="radio" name="radioInput" value="false" class="input-radio"
+          id="input-false"> No <br>
+
+        <input type="checkbox" name="sendEmail" value="1" class="input-checkbox"
+          id="input-checkbox"> Vuoi inviare una e-mail di notifica?
+
+        <div class="container-btn">
+          <button type="submit" id="bottoneInput"> Salva </button>
+        </div>
+      </form>
     </div>
 
     <script>
      const titoloLibro = document.getElementById("titoloLibro")
      const autoreLibro = document.getElementById("autoreLibro")
      const bottoneInput = document.getElementById("bottoneInput")
+    const radioTrue = document.getElementById("input-true")
+    const radioFalse = document.getElementById("input-false")
+    const checkbox = document.getElementById("input-checkbox")
 
      //To do: Recuperare i campi radio
+
      bottoneInput.addEventListener("click", (event)=> {
         event.preventDefault()
         // console.log(titoloLibro.value) //prendiamo il valore che ha inserito l'utente
         
+        console.log(radioTrue.checked)
+        console.log(radioFalse.checked)
 
+        //creo una variabile per salvare la scelta dell'utente del campo input 
+       let check = null
+       if(radioTrue.checked == true){
+        check = radioTrue.value
+       } else{
+        check = radioFalse.value
+       }
+      
         const formData = {
             title: titoloLibro.value,
-            autor: autoreLibro.value
+            autor: autoreLibro.value,
+            isCheck: check
         }
 
-        console.log(formData)
+   //salvo i dati nel local storage utilizzando la funzione creata 
+        saveData(formData)
+        alert("dati salvati con successo!")
+//controllo se l'utente ha selezionato l'opzione per inviare l'email
+if(checkbox.checked == true){
+  //simulo un invio asincrono della mail
+  setTimeout(() => {
+alert("email inviata correttamente!")
+  },2000)
+}
      })
+
+     function saveData(data){
+      //formatto l'oggetto ricevuto in un json 
+      let dataToJson = JSON.stringify(data)
+      localStorage.setItem("formData", dataToJson)
+
+     }
     
      
     </script>
-</body>
+  </body>
 </html>
