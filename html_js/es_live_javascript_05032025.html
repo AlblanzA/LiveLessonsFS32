@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form di registrazione</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      input {
+        margin: 10px 0;
+        padding: 8px;
+        width: 70%;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #9d2f76;
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      button:hover {
+        background-color: #ff00a2;
+      }
+
+      .card {
+        background-color: white;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .card p {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="registrationForm">
+      <h1>Modulo di registrazione</h1>
+
+      <label for="nameForm">Nome:</label> <br />
+      <input type="text" id="nameForm" name="name" required /> <br />
+
+      <label for="surname">Cognome:</label> <br />
+      <input type="text" id="surname" name="surname" required /> <br />
+
+      <label for="email">E-mail:</label> <br />
+      <input type="email" id="email" name="email" required /> <br />
+
+      <label for="telphone">Numero di telefono:</label> <br />
+      <input type="tel" maxlength="10" id="telphone" required /> <br />
+
+      <button type="submit" id="buttonSubmit">Invia</button><br />
+    </form>
+
+    <!-- Card per visualizzare i dati -->
+    <div id="infoCard" class="card" style="display: none;" >
+      <h2>Informazioni inserite:</h2>
+      <p><strong>Nome:</strong> <span id="nameDisplay"></span></p>
+      <p><strong>Cognome:</strong> <span id="surnameDisplay"></span></p>
+      <p><strong>E-mail:</strong> <span id="emailDisplay"></span></p>
+      <p><strong>Telefono:</strong> <span id="telphoneDisplay"></span></p>
+    </div>
+
+    <script>
+      const nameForm = document.getElementById("nameForm");
+      const surname = document.getElementById("surname");
+      const email = document.getElementById("email");
+      const telphone = document.getElementById("telphone");
+      const button = document.getElementById("buttonSubmit");
+
+      //recupero anche il form tramite id
+      const form = document.getElementById("registrationForm");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        let dataForm = {
+          name: nameForm.value,
+          surname: surname.value,
+          email: email.value,
+          tel: telphone.value,
+        };
+
+        console.log(dataForm);
+
+        let json = JSON.stringify(dataForm);
+        localStorage.setItem("dataForm", json);
+
+        alert("registrazione avvenuta con successo!");
+
+        refreshCard()
+      });
+
+      function refreshCard() {
+        let dataFromStorage = localStorage.getItem("dataForm");
+        //converto il json in oggetto
+        let jsonObject = JSON.parse(dataFromStorage);
+
+        document.getElementById("nameDisplay").innerHTML = jsonObject.name;
+        document.getElementById("surnameDisplay").innerHTML = jsonObject.surname;
+        document.getElementById("emailDisplay").innerHTML = jsonObject.email;
+        document.getElementById("telphoneDisplay").innerHTML = jsonObject.telphone;
+
+        document.getElementById("infoCard").style.display = "block"
+      }
+
+      
+    </script>
+  </body>
+</html>
